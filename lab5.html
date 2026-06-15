@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Амстердам</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #fffdf7; font-family: Arial, sans-serif; color: #333;">
+ 
+    <style>
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #3a7d44;
+            box-sizing: border-box;
+            padding: 0 30px;
+        }
+ 
+        .nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 14px 18px;
+            font-size: 1rem;
+        }
+ 
+        .nav a:hover {
+            text-decoration: underline;
+        }
+ 
+        .content {
+            margin-top: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 30px;
+        }
+ 
+        h2 {
+            color: #3a7d44;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+ 
+        p {
+            line-height: 1.8;
+        }
+ 
+        .section {
+            margin-bottom: 60px;
+        }
+ 
+        /* ===================== */
+        /* РАЗДЕЛ 1 — ФЛЕКСБОКС */
+        /* ===================== */
+ 
+        .flex-container {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+ 
+        .flex-item {
+            background-color: #e8f4eb;
+            border-left: 4px solid #3a7d44;
+            padding: 16px 20px;
+            flex: 1;
+            min-width: 180px;
+            box-sizing: border-box;
+        }
+ 
+        .flex-item h3 {
+            margin: 0 0 6px 0;
+            color: #3a7d44;
+            font-size: 1rem;
+        }
+ 
+        .flex-item p {
+            margin: 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+ 
+        /* =================== */
+        /* РАЗДЕЛ 2 — ГРИД     */
+        /* =================== */
+ 
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+ 
+        .grid-item {
+            background-color: #e8f4eb;
+            padding: 16px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+ 
+        .grid-item .year {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #3a7d44;
+            display: block;
+            margin-bottom: 6px;
+        }
+ 
+        .grid-item p {
+            margin: 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+ 
+        /* === АНИМАЦИИ === */
+ 
+        .nav a {
+            transition: background-color 0.3s ease, padding-left 0.3s ease;
+        }
+ 
+        .nav a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding-left: 26px;
+        }
+ 
+        .flex-item {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+ 
+        .flex-item:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 6px 16px rgba(58, 125, 68, 0.2);
+        }
+ 
+        .grid-item {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+ 
+        .grid-item:hover {
+            transform: scale(1.05) rotate(-1deg);
+            background-color: #c0dd97;
+        }
+ 
+        /* === МЕДИАЗАПРОСЫ === */
+ 
+        @media (max-width: 600px) {
+            .flex-item {
+                min-width: 100%;
+            }
+ 
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+ 
+            .content {
+                padding: 20px 16px;
+            }
+        }
+
+        /* === СТИЛИ ДЛЯ JS-ЭЛЕМЕНТОВ === */
+
+        #banner {
+            background-color: #3a7d44;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 1rem;
+            display: none;
+        }
+
+        #click-message {
+            margin-top: 12px;
+            padding: 10px 16px;
+            background-color: #fffbe6;
+            border-left: 4px solid #e0a800;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        #counter {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+    </style>
+ 
+    <!-- Навигация -->
+    <div class="nav">
+        <a href="#about">О городе</a>
+        <a href="#transport">Транспорт</a>
+        <a href="#history">История</a>
+    </div>
+ 
+    <div class="content">
+
+        <!-- Баннер — появится через setTimeout -->
+        <div id="banner"></div>
+ 
+        <div id="about" class="section">
+            <h2>О городе</h2>
+            <p>
+                Амстердам — столица и крупнейший город Нидерландов. Основан в XIII веке как рыбацкая
+                деревня у слияния реки Амстел с заливом Эй. Сегодня здесь живут около 900 000 человек.
+                Город знаменит своими каналами, узкими домами и велосипедами на каждом шагу.
+            </p>
+            <p>
+                Официальный язык — нидерландский, но большинство жителей свободно говорят по-английски.
+                Климат мягкий и дождливый круглый год. Валюта — евро.
+            </p>
+        </div>
+ 
+        <div id="transport" class="section">
+            <h2>Транспорт <span style="font-weight: normal; font-size: 0.8em; color: #888;">(флексбокс)</span></h2>
+            <p>В Амстердаме легко передвигаться — здесь несколько видов городского транспорта.</p>
+ 
+            <div id="counter"></div>
+
+            <div class="flex-container">
+                <div class="flex-item">
+                    <h3>Велосипед</h3>
+                    <p>Самый популярный транспорт. В городе около 1 миллиона велосипедов — больше, чем жителей.</p>
+                </div>
+                <div class="flex-item">
+                    <h3>Трамвай</h3>
+                    <p>Сеть трамваев охватывает весь центр города. Удобно и быстро.</p>
+                </div>
+                <div class="flex-item">
+                    <h3>Метро</h3>
+                    <p>Небольшое, но полезное. Соединяет центр с удалёнными районами.</p>
+                </div>
+                <div class="flex-item">
+                    <h3>Лодка</h3>
+                    <p>По каналам ходят водные автобусы и прогулочные лодки. Необычный способ добраться.</p>
+                </div>
+            </div>
+
+            <div id="click-message"></div>
+        </div>
+ 
+        <div id="history" class="section">
+            <h2>История в датах <span style="font-weight: normal; font-size: 0.8em; color: #888;">(грид)</span></h2>
+            <p>Несколько ключевых моментов в истории города.</p>
+ 
+            <div class="grid-container">
+                <div class="grid-item">
+                    <span class="year">1275</span>
+                    <p>Первое упоминание Амстердама в исторических документах</p>
+                </div>
+                <div class="grid-item">
+                    <span class="year">1602</span>
+                    <p>Основана Голландская Ост-Индская компания — первая в мире акционерная компания</p>
+                </div>
+                <div class="grid-item">
+                    <span class="year">1625</span>
+                    <p>Строительство кольца каналов — теперь это объект Всемирного наследия ЮНЕСКО</p>
+                </div>
+                <div class="grid-item">
+                    <span class="year">1940</span>
+                    <p>Германская оккупация во Второй мировой войне. Анна Франк прячется в доме на Принсенграхт</p>
+                </div>
+                <div class="grid-item">
+                    <span class="year">1960</span>
+                    <p>Амстердам становится центром студенческих и культурных движений в Европе</p>
+                </div>
+                <div class="grid-item">
+                    <span class="year">2010</span>
+                    <p>Открытие нового метро Noord/Zuidlijn после 15 лет строительства</p>
+                </div>
+            </div>
+        </div>
+ 
+    </div>
+
+    <script>
+        // Переменные
+        var cityName = "Амстердам";
+        var bannerDelay = 1500;
+
+        // Функция показывает баннер
+        function showBanner() {
+            var banner = document.getElementById("banner");
+            banner.textContent = "Добро пожаловать на страницу об " + cityName + "!";
+            banner.style.display = "block";
+        }
+
+        // Функция скрывает баннер
+        function hideBanner() {
+            var banner = document.getElementById("banner");
+            banner.style.display = "none";
+        }
+
+        // Баннер появляется через 1.5 секунды, исчезает ещё через 3 секунды
+        setTimeout(showBanner, bannerDelay);
+        setTimeout(hideBanner, bannerDelay + 3000);
+
+        // Считаем карточки транспорта и показываем счётчик пользователю
+        var flexItems = document.querySelectorAll(".flex-item");
+        var flexCount = flexItems.length;
+
+        var counter = document.getElementById("counter");
+        counter.textContent = "Видов транспорта на странице: " + flexCount;
+
+        // При клике на карточку показываем сообщение под карточками
+        function handleClick() {
+            var title = this.querySelector("h3").textContent;
+            var message = document.getElementById("click-message");
+            message.textContent = "Вы выбрали: " + title;
+            message.style.display = "block";
+        }
+
+        for (var i = 0; i < flexItems.length; i++) {
+            flexItems[i].addEventListener("click", handleClick);
+        }
+    </script>
+ 
+</body>
+</html>
